@@ -1,9 +1,11 @@
 package com.turbolent.tokenizer;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Tokenizer {
 
@@ -85,7 +87,7 @@ public class Tokenizer {
     private static final Pattern[] CONTRACTIONS2 = compileContractions("(can)(not)");
     private static final Pattern WHITESPACE = Pattern.compile("\\s+");
 
-    public static String[] tokenize(String sentence) {
+    public static List<String> tokenize(String sentence) {
         return new Tokenizer(sentence).tokenize();
     }
 
@@ -103,7 +105,7 @@ public class Tokenizer {
         sentence = replaceAll(sentence, pattern, replacer);
     }
 
-    private String[] tokenize() {
+    private List<String> tokenize() {
         // Starting quotes
         replaceAll(QUOTE_AT_START, "``");
         replaceAll(GRAVES, " `` ");
@@ -140,7 +142,8 @@ public class Tokenizer {
                 (" " + matcher.group(1) + " "  + matcher.group(2) + " "));
         }
 
-        return WHITESPACE.split(sentence.trim());
+        return WHITESPACE.splitAsStream(sentence.trim())
+                         .collect(Collectors.toList());
     }
 
 }
