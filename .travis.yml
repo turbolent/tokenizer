@@ -2,3 +2,14 @@ language: java
 
 jdk:
   - oraclejdk8
+
+env:
+  global:
+    secure: "ROU9JK1WwJhFr0V3EKlGk0P9GZds+4+DSTUkYSpWz+b9lInvw4AhFW4DOe4kHMrsggjBRlCACwd0QzyLQVjWiDh+zlMUXd7uS/q4dc3eTtPszzBafMBnwiYzDXu2TSf4BqvnaFatE2Eyngk12kFsunKHXCJXhe1Ne7oZ7No/ExTimbYv6giwlmCcpi1ScpCQL5j7FquFLjBRZPWCxWWdDesdHdybyoaQ7MEEeyhl3cY8jOgoCRXd25i42KkRsWojuliLaKvQav0RVt/44IWUIAgsjRjRMf08M2CcLYba0gCmIeVsNBBT2sfmLxAnZqFZ6ytMTsDdWNCxr3B065TL8apY1DQPTBfbpyQNK5ZTOTmYKpjASvqBzhidoOoaBl9vJpp+EngUafPluYinaSTkDGsqvIe/1q5tJEKBfNLwiZ9+SXL8qvk7Dut8hxqV6itowY8k5RQOiJRS439qbWspYfNJv6zDwZicZd9Fj1twZz+vUDQcR/UH0ZhiWcG2/QTzmPLCUtjHlCSw7XO6DatK4Ln/VymZCKA9lFaRa9cpaR6aWz2VIER+kbUt9Ly0xDcIYmsT0xupD3TFEzWNRNHWuKC9wWqbpoMdj/J1EefyKht3CK5N5YJAjKJhvD/1LwrrWmIGNT0C8ASeQM7gSjXnieQmMD38cSNcIFHW16IIrJI="
+
+after_success:
+  - .travis/deploy.sh
+
+cache:
+  directories:
+  - $HOME/.m2
